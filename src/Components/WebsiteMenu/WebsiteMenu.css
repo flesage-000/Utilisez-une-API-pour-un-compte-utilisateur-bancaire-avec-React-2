@@ -1,0 +1,6 @@
+.link {
+  text-align: center;
+}
+.link:not(:last-child) {
+  margin-bottom: 15px;
+}

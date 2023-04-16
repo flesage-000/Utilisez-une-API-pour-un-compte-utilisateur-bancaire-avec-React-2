@@ -1,0 +1,37 @@
+.createEmployee {
+  margin: 0 auto;
+  width: 300px;
+}
+.createEmployee form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.createEmployee form div {
+  display: flex;
+  flex-direction: column-reverse;
+}
+.createEmployee form div:not(:last-child),
+.createEmployee form fieldset {
+  margin-bottom: 15px;
+}
+.createEmployee form div label {
+  margin-bottom: 5px;
+}
+.createEmployee form fieldset {
+  border: solid 1px #000;
+
+  padding: 15px;
+}
+.createEmployee span.required {
+  display: none;
+}
+.createEmployee .required {
+  color: red;
+}
+.createEmployee [required] + label .required {
+  display: inline-block;
+}
+.createEmployee [type="button"] {
+  margin: 15px 0;
+}

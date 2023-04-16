@@ -1,0 +1,59 @@
+table {
+  margin-bottom: 15px;
+}
+table tbody tr:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+table tbody tr:nth-child(even) {
+  background-color: #fff;
+}
+table th {
+  font-weight: 900;
+}
+table th > div {
+  column-gap: 5px;
+  display: flex;
+  flex-direction: row;
+}
+table tbody td {
+  border-top: solid 1px #000;
+}
+table tbody td:first-child {
+  background-color: #f1f1f1;
+}
+table tfoot td:first-child {
+  text-align: left;
+}
+table tfoot td:last-child {
+  text-align: right;
+}
+table th,
+table td {
+  padding: 8px 10px;
+}
+
+/* Sortable BUTTON */
+table button {
+  appearance: none;
+  background-color: transparent;
+  border: none;
+
+  padding: 0;
+}
+
+/* Sortable TH */
+table th > div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+/* Sortable .sorter */
+.sorter {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+.sorter .currentSort {
+  color: gray;
+}

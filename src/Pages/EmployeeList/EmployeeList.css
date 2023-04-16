@@ -1,0 +1,19 @@
+.employeeList {
+  display: flex;
+  flex-direction: column;
+}
+.employeeList form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+.employeeList form select {
+  margin: 0 5px;
+}
+.employeeList form input {
+  margin-left: 5px;
+}
+.employeeList {
+
+}
