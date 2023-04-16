@@ -13,6 +13,7 @@ function Tables(data) {
   const [employees, setEmployees] = useState(GetFromLocal);
   const [currentSort, setCurrentSort] = useState('');
   const dataHeader = data.header;
+  const entriesLength = employees.length;
 
   function handleEntries(event) {
     const { value } = event.target;
@@ -145,7 +146,7 @@ function Tables(data) {
         <tfoot>
           <tr>
             <td colSpan="5">
-              Showing 1 to 1 entries
+              Showing 1 to {entriesLength} entries
             </td>
             <td colSpan="4">
             {startIndex !== 0 ? <a href="/">Previous</a> : ''} <button>1</button> <a href="/">Next</a>
