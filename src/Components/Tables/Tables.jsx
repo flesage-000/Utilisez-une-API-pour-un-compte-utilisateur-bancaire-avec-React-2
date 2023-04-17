@@ -3,21 +3,21 @@ import { useState } from "react";
 
 import "./Tables.css";
 
-import GetFromLocal from "../Stores/GetFromLocal.jsx";
+import employeesOriginalList from "../Stores/GetFromLocal.jsx";
 
 function Tables(data) {
   data = data.data;
-  const [showEntries, setShowEntries] = useState(10);
-  const [startIndex, setStartIndex] = useState(0);
-  const [endIndex, setEndIndex] = useState(showEntries);
-  const [employees, setEmployees] = useState(GetFromLocal);
+  const [showEntries, setShowEntries] = useState(1);
+  const [indexStart, setIndexStart] = useState(0);
+  const [indexEnd, setIndexEnd] = useState(showEntries);
+  const [employees, setEmployees] = useState(employeesOriginalList);
   const [currentSort, setCurrentSort] = useState('');
   const dataHeader = data.header;
 
   function handleEntries(event) {
     const { value } = event.target;
     setShowEntries(value);
-    setEndIndex(value);
+    setIndexEnd(value);
   }
 
   /**
@@ -91,7 +91,17 @@ function Tables(data) {
         }
     });
       setEmployees(newObject);
-    } else setEmployees(GetFromLocal);
+    } else setEmployees(employeesOriginalList);
+  }
+
+  function handleNext() {
+    setIndexStart(indexStart + showEntries);
+    setIndexEnd(indexEnd + showEntries);
+  }
+
+  function handlePrevious() {
+    setIndexStart(indexStart - showEntries);
+    setIndexEnd(indexEnd - showEntries);
   }
 
   return(
@@ -150,7 +160,7 @@ function Tables(data) {
         </thead>
         <tbody>
             { employees ? employees
-                .slice(startIndex, endIndex)
+                .slice(indexStart, indexEnd)
                 .map(tr => {
                   return (<tr key={tr.firstName}>
                     <td>{tr.firstName}</td>
@@ -173,7 +183,7 @@ function Tables(data) {
               Showing 1 to 1 entries
             </td>
             <td colSpan="4">
-            {startIndex !== 0 ? <a href="/">Previous</a> : ''} <button>1</button> <a href="/">Next</a>
+            {indexStart !== 0 ? <button onClick={handlePrevious} type="button">Previous</button> : ''} <button>1</button> {indexEnd < employeesOriginalList.length ? <button onClick={handleNext} type="button">Next</button> : ''}
             </td>
           </tr>
         </tfoot>
