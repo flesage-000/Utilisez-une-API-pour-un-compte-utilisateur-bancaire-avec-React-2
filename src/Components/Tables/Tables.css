@@ -37,6 +37,9 @@ table button {
   appearance: none;
   background-color: transparent;
   border: none;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none;
 
   padding: 0;
 }

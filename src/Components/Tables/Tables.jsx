@@ -13,7 +13,6 @@ function Tables(data) {
   const [employees, setEmployees] = useState(GetFromLocal);
   const [currentSort, setCurrentSort] = useState('');
   const dataHeader = data.header;
-  const entriesLength = employees.length;
 
   function handleEntries(event) {
     const { value } = event.target;
@@ -72,6 +71,29 @@ function Tables(data) {
     setEmployees(dataToSort);
   }
 
+  function handleSearch(event) {
+    const value = event.target.value.trim();
+    let dataToSearch = [...employees];
+    if (value.length >= 2) {
+      let newObject = [];
+      dataToSearch.map((a) => {
+        if (  a.firstName.toLowerCase().includes(value.toLowerCase())
+              || a.lastName.toLowerCase().includes(value.toLowerCase())
+              || a.startDate.toLowerCase().includes(value.toLowerCase())
+              || a.departement.toLowerCase().includes(value.toLowerCase())
+              || a.dateOfBirth.toLowerCase().includes(value.toLowerCase())
+              || a.street.toLowerCase().includes(value.toLowerCase())
+              || a.street.toLowerCase().includes(value.toLowerCase())
+              || a.city.toLowerCase().includes(value.toLowerCase())
+              || a.state.toLowerCase().includes(value.toLowerCase())
+              || a.zipCode.toLowerCase().includes(value.toLowerCase()) ) {
+          newObject.push(a);
+        }
+    });
+      setEmployees(newObject);
+    } else setEmployees(GetFromLocal);
+  }
+
   return(
     <>
       <form>
@@ -90,7 +112,9 @@ function Tables(data) {
         </div>
         <div>
           <label htmlFor="search">Search:</label>
-          <input type="text" id="search" />
+          <input  id="search"
+                  onChange={handleSearch}
+                  type="text" />
         </div>
       </form>
 
@@ -146,7 +170,7 @@ function Tables(data) {
         <tfoot>
           <tr>
             <td colSpan="5">
-              Showing 1 to {entriesLength} entries
+              Showing 1 to 1 entries
             </td>
             <td colSpan="4">
             {startIndex !== 0 ? <a href="/">Previous</a> : ''} <button>1</button> <a href="/">Next</a>
