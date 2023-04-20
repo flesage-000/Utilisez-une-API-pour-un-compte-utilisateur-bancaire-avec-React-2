@@ -7,7 +7,7 @@ import employeesOriginalList from "../Stores/GetFromLocal.jsx";
 
 function Tables(data) {
   data = data.data;
-  const [showEntries, setShowEntries] = useState(1);
+  const [showEntries, setShowEntries] = useState(25);
   const [indexStart, setIndexStart] = useState(0);
   const [indexEnd, setIndexEnd] = useState(showEntries);
   const [employees, setEmployees] = useState(employeesOriginalList);
@@ -72,24 +72,22 @@ function Tables(data) {
   }
 
   function handleSearch(event) {
-    const value = event.target.value.trim();
+    const value = event.target.value.trim().toLowerCase();
     let dataToSearch = [...employees];
     if (value.length >= 2) {
       let newObject = [];
-      dataToSearch.map((a) => {
-        if (  a.firstName.toLowerCase().includes(value.toLowerCase())
-              || a.lastName.toLowerCase().includes(value.toLowerCase())
-              || a.startDate.toLowerCase().includes(value.toLowerCase())
-              || a.departement.toLowerCase().includes(value.toLowerCase())
-              || a.dateOfBirth.toLowerCase().includes(value.toLowerCase())
-              || a.street.toLowerCase().includes(value.toLowerCase())
-              || a.street.toLowerCase().includes(value.toLowerCase())
-              || a.city.toLowerCase().includes(value.toLowerCase())
-              || a.state.toLowerCase().includes(value.toLowerCase())
-              || a.zipCode.toLowerCase().includes(value.toLowerCase()) ) {
-          newObject.push(a);
-        }
-    });
+      dataToSearch.filter((data) => {
+        if (  data.firstName.toLowerCase().includes(value)
+              || data.lastName.toLowerCase().includes(value)
+              || data.startDate.toLowerCase().includes(value)
+              || data.department.toLowerCase().includes(value)
+              || data.dateOfBirth.toLowerCase().includes(value)
+              || data.street.toLowerCase().includes(value)
+              || data.city.toLowerCase().includes(value)
+              || data.state.toLowerCase().includes(value)
+              // || data.zipCode.includes(value)
+            ) { newObject.push(data); }
+      });
       setEmployees(newObject);
     } else setEmployees(employeesOriginalList);
   }
@@ -104,6 +102,30 @@ function Tables(data) {
     setIndexEnd(indexEnd - showEntries);
   }
 
+  function handlePage(event) {
+    const { value } = event.target; console.log("value", value);
+    setIndexStart(showEntries * event.target.dataset.page);
+    // setIndexEnd((showEntries * event.target.dataset.page) + showEntries);
+  }
+
+  const Paginator = () => { console.log("Paginator", employees); // dans composant à part
+    const employeesLength = employees.length;
+    const pageTotal = employeesLength / showEntries;
+    const pageArray = [];
+    for(let i = 1; i <= pageTotal; i++) { //console.log("i", i);
+      pageArray.push(i)
+    }
+    return (
+      <>
+        {indexStart !== 0 ? <button className="previous" onClick={handlePrevious} type="button">Previous</button> : ''}
+        {pageArray.map((number, index) => (
+          <button value={number-1} key={index} onClick={handlePage} type="button">{number}</button>
+        ))}
+        {indexEnd < employeesOriginalList.length ? <button className="next" onClick={handleNext} type="button">Next</button> : ''}
+      </>
+    );
+  }
+
   return(
     <>
       <form>
@@ -112,7 +134,6 @@ function Tables(data) {
           <select defaultValue={showEntries}
                   id="entries"
                   onChange={handleEntries}>
-            <option value="1">1</option>
             <option value="10">10</option>
             <option value="25">25</option>
             <option value="50">50</option>
@@ -134,7 +155,8 @@ function Tables(data) {
             {
               dataHeader.map((header, index) => {
                 return (
-                  <th key={header.name}>
+                  <th className={CamelCaseConverter(null, header.name, null)}
+                      key={header.name}>
                     <div>
                       {header.name}
                       {header.sortable &&
@@ -183,7 +205,7 @@ function Tables(data) {
               Showing 1 to 1 entries
             </td>
             <td colSpan="4">
-            {indexStart !== 0 ? <button onClick={handlePrevious} type="button">Previous</button> : ''} <button>1</button> {indexEnd < employeesOriginalList.length ? <button onClick={handleNext} type="button">Next</button> : ''}
+              <Paginator />
             </td>
           </tr>
         </tfoot>
