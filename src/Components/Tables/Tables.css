@@ -15,6 +15,7 @@ table tbody tr:nth-child(even) {
 }
 table tbody tr:nth-child(even):hover {
   background-color: var(--color-03);
+  transition: background-color .3s;
 }
 table tbody tr:nth-child(odd) {
   animation-timing-function: ease-in-out;
@@ -23,6 +24,7 @@ table tbody tr:nth-child(odd) {
 }
 table tbody tr:nth-child(odd):hover {
   background-color: var(--color-03);
+  transition: background-color .3s;
 }
 table th {
   font-weight: 900;
