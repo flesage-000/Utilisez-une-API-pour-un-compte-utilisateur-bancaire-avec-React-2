@@ -2,3 +2,9 @@
 .react-datepicker {
   font-family: Montserrat;
 }
+
+/* Form */
+form:invalid [type="submit"] {
+  pointer-events: none;
+  opacity: .5;
+}

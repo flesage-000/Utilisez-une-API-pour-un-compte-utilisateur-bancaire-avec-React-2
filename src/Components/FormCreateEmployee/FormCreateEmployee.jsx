@@ -11,6 +11,7 @@ import FormOptions from "../FormOptions/FormOptions.jsx";
 import AddToLocal from "../Stores/AddToLocal.jsx";
 
 function FormCreateEmployee() {
+  const [dateOfBirth, setDateOfBirth] = useState(new Date());
   const [startDate, setStartDate] = useState(new Date());
   const [form, setForm] = useState({
     firstName: null,
@@ -33,7 +34,7 @@ function FormCreateEmployee() {
   return(
     <form onSubmit={handleSubmit}>
       <div>
-        <input  type="text" id="firstname" required
+        <input  type="text" id="firstname" minLength="3" required
                 onChange={
                   (e) => {
                     setForm({ ...form,
@@ -43,7 +44,7 @@ function FormCreateEmployee() {
         <label htmlFor="firstname">First Name<span className="required">*</span></label>
       </div>
       <div>
-        <input  type="text" id="lastname" required
+        <input  type="text" id="lastname" minLength="3" required
                 onChange={
                   (e) => {
                     setForm({ ...form,
@@ -56,12 +57,12 @@ function FormCreateEmployee() {
         <ReactDatePicker  dateFormat="dd/MM/yyyy"
                           onChange={
                             (date) => {
-                              setStartDate(date);
+                              setDateOfBirth(date);
                               setForm({ ...form,
                                         dateOfBirth: date.toLocaleDateString() });
                             }
                           }
-                          selected={startDate} />
+                          selected={dateOfBirth} />
         <label htmlFor="dateofbirth">Date of Birth<span className="required">*</span></label>
       </div>
       <div>
@@ -78,7 +79,7 @@ function FormCreateEmployee() {
       <fieldset>
         <legend>Address</legend>
         <div>
-          <input  type="text" id="street" required
+          <input  type="text" id="street" minLength="3" required
                   onChange={
                     (e) => {
                       setForm({ ...form,
@@ -88,7 +89,7 @@ function FormCreateEmployee() {
           <label htmlFor="street">Street<span className="required">*</span></label>
         </div>
         <div>
-          <input  type="text" id="city" required
+          <input  type="text" id="city" minLength="3" required
                   onChange={
                     (e) => {
                       setForm({ ...form,
