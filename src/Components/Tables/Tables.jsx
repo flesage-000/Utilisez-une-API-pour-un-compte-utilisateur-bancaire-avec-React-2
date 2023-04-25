@@ -104,8 +104,8 @@ function Tables(data) {
 
   function handlePage(event) {
     const { value } = event.target; console.log("value", value);
-    setIndexStart(showEntries * event.target.dataset.page);
-    // setIndexEnd((showEntries * event.target.dataset.page) + showEntries);
+    setIndexStart(showEntries * (value - 1));
+    setIndexEnd((showEntries * value) - 1);
   }
 
   const Paginator = () => { console.log("Paginator", employees); // dans composant à part
@@ -119,7 +119,7 @@ function Tables(data) {
       <>
         {indexStart !== 0 ? <button className="previous" onClick={handlePrevious} type="button">Previous</button> : ''}
         {pageArray.map((number, index) => (
-          <button value={number-1} key={index} onClick={handlePage} type="button">{number}</button>
+          <button value={number} key={index} onClick={handlePage} type="button">{number}</button>
         ))}
         {indexEnd < employeesOriginalList.length ? <button className="next" onClick={handleNext} type="button">Next</button> : ''}
       </>
