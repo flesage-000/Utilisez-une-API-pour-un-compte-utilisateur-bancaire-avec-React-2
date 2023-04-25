@@ -7,12 +7,13 @@ import employeesOriginalList from "../Stores/GetFromLocal.jsx";
 
 function Tables(data) {
   data = data.data;
-  const [showEntries, setShowEntries] = useState(25);
+  const [showEntries, setShowEntries] = useState(10);
   const [indexStart, setIndexStart] = useState(0);
   const [indexEnd, setIndexEnd] = useState(showEntries);
   const [employees, setEmployees] = useState(employeesOriginalList);
   const [currentSort, setCurrentSort] = useState('');
   const dataHeader = data.header;
+  const [currentPage, setCurrentPage] = useState(0);
 
   function handleEntries(event) {
     const { value } = event.target;
@@ -93,24 +94,27 @@ function Tables(data) {
   }
 
   function handleNext() {
+    setCurrentPage(currentPage + 1);
     setIndexStart(indexStart + showEntries);
     setIndexEnd(indexEnd + showEntries);
   }
 
   function handlePrevious() {
+    setCurrentPage(currentPage - 1);
     setIndexStart(indexStart - showEntries);
     setIndexEnd(indexEnd - showEntries);
   }
 
   function handlePage(event) {
-    const { value } = event.target; console.log("value", value);
+    const { value } = event.target; // console.log("value", value);
+    setCurrentPage(value - 1);
     setIndexStart(showEntries * (value - 1));
     setIndexEnd((showEntries * value) - 1);
   }
 
-  const Paginator = () => { console.log("Paginator", employees); // dans composant à part
+  const Paginator = () => { console.log("Paginator", Math.ceil(employees.length / showEntries)); // dans composant à part
     const employeesLength = employees.length;
-    const pageTotal = employeesLength / showEntries;
+    const pageTotal = Math.ceil(employeesLength / showEntries);
     const pageArray = [];
     for(let i = 1; i <= pageTotal; i++) { //console.log("i", i);
       pageArray.push(i)
@@ -119,7 +123,7 @@ function Tables(data) {
       <>
         {indexStart !== 0 ? <button className="previous" onClick={handlePrevious} type="button">Previous</button> : ''}
         {pageArray.map((number, index) => (
-          <button value={number} key={index} onClick={handlePage} type="button">{number}</button>
+          <button className={currentPage === index ? 'dNone' : ''} value={number} key={index} onClick={handlePage} type="button">{number}</button>
         ))}
         {indexEnd < employeesOriginalList.length ? <button className="next" onClick={handleNext} type="button">Next</button> : ''}
       </>
