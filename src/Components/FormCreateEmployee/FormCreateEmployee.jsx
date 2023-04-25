@@ -1,4 +1,6 @@
 import React, {useState} from "react";
+import ReactDatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 import constDepartments from "../../constants/departements.jsx"
 import constStates from "../../constants/states.jsx";
@@ -7,6 +9,7 @@ import FormOptions from "../FormOptions/FormOptions.jsx";
 import AddToLocal from "../Stores/AddToLocal.jsx";
 
 function FormCreateEmployee() {
+  const [startDate, setStartDate] = useState(new Date());
   const [form, setForm] = useState({
     firstName: null,
     lastName: null,
@@ -48,23 +51,26 @@ function FormCreateEmployee() {
         <label htmlFor="lastname">Last Name<span className="required">*</span></label>
       </div>
       <div>
-        <input  type="text" id="dateofbirth" required
-                onChange={
-                  (e) => {
-                    setForm({ ...form,
-                              dateOfBirth: e.target.value })
-                  }
-                } />
+        <ReactDatePicker  dateFormat="dd/MM/yyyy"
+                          onChange={
+                            (date) => {
+                              setStartDate(date);
+                              setForm({ ...form,
+                                        dateOfBirth: date.toLocaleDateString() });
+                            }
+                          }
+                          selected={startDate} />
         <label htmlFor="dateofbirth">Date of Birth<span className="required">*</span></label>
       </div>
       <div>
-        <input  type="text" id="startdate" required
-                onChange={
-                  (e) => {
-                    setForm({ ...form,
-                              startDate: e.target.value })
-                  }
-                } />
+        <ReactDatePicker  dateFormat="dd/MM/yyyy"
+                          onChange={
+                            (date) => {
+                              setStartDate(date)
+                              setForm({ ...form,
+                                        startDate: date.toLocaleDateString() })}
+                          }
+                          selected={startDate} />
         <label htmlFor="startdate">Start Date<span className="required">*</span></label>
       </div>
       <fieldset>
