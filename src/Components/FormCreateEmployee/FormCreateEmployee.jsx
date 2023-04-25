@@ -2,6 +2,8 @@ import React, {useState} from "react";
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
+import "./FormCreateEmployee.css";
+
 import constDepartments from "../../constants/departements.jsx"
 import constStates from "../../constants/states.jsx";
 
@@ -108,7 +110,7 @@ function FormCreateEmployee() {
           <label htmlFor="state">State<span className="required">*</span></label>
         </div>
         <div>
-          <input  type="text" id="zipcode" required
+          <input  type="number" id="zipcode" required max="99999" min="1"
                   onChange={
                     (e) => {
                       setForm({ ...form,

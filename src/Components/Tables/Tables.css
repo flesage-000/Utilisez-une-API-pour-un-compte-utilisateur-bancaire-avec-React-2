@@ -72,6 +72,9 @@ table button {
 }
 
 /* Sortable TH */
+table th {
+  font-weight: 600;
+}
 table th > div {
   align-items: center;
   display: flex;
