@@ -188,7 +188,7 @@ function Tables(data) {
             { employees ? employees
                 .slice(indexStart, indexEnd)
                 .map(tr => {
-                  return (<tr key={tr.firstName}>
+                  return (<tr key={Math.random()}>
                     <td>{tr.firstName}</td>
                     <td>{tr.lastName}</td>
                     <td>{tr.startDate}</td>
