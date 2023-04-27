@@ -106,10 +106,10 @@ function Tables(data) {
   }
 
   function handlePage(event) {
-    const { value } = event.target; // console.log("value", value);
+    const { value } = event.target;
     setCurrentPage(value - 1);
     setIndexStart(showEntries * (value - 1));
-    setIndexEnd((showEntries * value) - 1);
+    setIndexEnd(showEntries * value);
   }
 
   const Paginator = () => { console.log("Paginator", Math.ceil(employees.length / showEntries)); // dans composant à part
