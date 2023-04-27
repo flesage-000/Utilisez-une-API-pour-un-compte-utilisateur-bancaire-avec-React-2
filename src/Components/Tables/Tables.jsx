@@ -122,7 +122,7 @@ function Tables(data) {
       <>
         {indexStart !== 0 ? <button className="previous" onClick={handlePrevious} type="button">Previous</button> : ''}
         {pageArray.map((number, index) => (
-          <button className={currentPage === index ? 'dNone' : ''} value={number} key={index} onClick={handlePage} type="button">{number}</button>
+          <button disabled={currentPage === index ? true : false} value={number} key={index} onClick={handlePage} type="button">{number}</button>
         ))}
         {indexEnd < employeesOriginalList.length ? <button className="next" onClick={handleNext} type="button">Next</button> : ''}
       </>

@@ -71,6 +71,13 @@ table button {
   padding: 0;
 }
 
+table button[disabled] {
+  color: var(--color-04);
+  font-style: italic;
+  font-weight: 900;
+  pointer-events: none;
+}
+
 /* Sortable TH */
 table th {
   font-weight: 600;
@@ -105,9 +112,4 @@ table th > div {
 .state,
 .zipCode {
   width: 55px;
-}
-
-/* Display */
-.dNone {
-  display: none;
 }
