@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { Flmodale } from "fl-modale";
+import 'fl-modale/dist/index.css'
 
 import "./FormCreateEmployee.css";
 
@@ -11,6 +13,7 @@ import FormOptions from "../FormOptions/FormOptions.jsx";
 import AddToLocal from "../Stores/AddToLocal.jsx";
 
 function FormCreateEmployee() {
+  const [isOpen, setIsOpen] = useState(true);
   const [dateOfBirth, setDateOfBirth] = useState(new Date());
   const [startDate, setStartDate] = useState(new Date());
   const [form, setForm] = useState({
@@ -24,118 +27,134 @@ function FormCreateEmployee() {
     zipCode: null,
     department: null,
   });
+  const data = {
+    style: {
+      modalBackgroundColor: null,
+      modalBorder: null,
+      modalPosition: {
+        type: "fixedWidthHeight",
+      },
+      overlayBackground: null,
+      textAlign: "left"
+    },
+    text: "Hey Salut !!"
+  }
 
   function handleSubmit(event) {
     event.preventDefault();
     console.log("form", form);
     AddToLocal(form);
+    setIsOpen(true);
   }
 
   return(
-    <form onSubmit={handleSubmit}>
-      <div>
-        <input  type="text" id="firstname" minLength="3" required
-                onChange={
-                  (e) => {
-                    setForm({ ...form,
-                              firstName: e.target.value })
-                  }
-                } />
-        <label htmlFor="firstname">First Name<span className="required">*</span></label>
-      </div>
-      <div>
-        <input  type="text" id="lastname" minLength="3" required
-                onChange={
-                  (e) => {
-                    setForm({ ...form,
-                              lastName: e.target.value  })
-                  }
-                } />
-        <label htmlFor="lastname">Last Name<span className="required">*</span></label>
-      </div>
-      <div>
-        <ReactDatePicker  dateFormat="dd/MM/yyyy"
-                          onChange={
-                            (date) => {
-                              setDateOfBirth(date);
-                              setForm({ ...form,
-                                        dateOfBirth: date.toLocaleDateString() });
+    <>
+      <Flmodale data={data} isOpen={isOpen} setMdlOpen={setIsOpen}/>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <input  type="text" id="firstname" minLength="3" required
+                  onChange={
+                    (e) => {
+                      setForm({ ...form,
+                                firstName: e.target.value })
+                    }
+                  } />
+          <label htmlFor="firstname">First Name<span className="required">*</span></label>
+        </div>
+        <div>
+          <input  type="text" id="lastname" minLength="3" required
+                  onChange={
+                    (e) => {
+                      setForm({ ...form,
+                                lastName: e.target.value  })
+                    }
+                  } />
+          <label htmlFor="lastname">Last Name<span className="required">*</span></label>
+        </div>
+        <div>
+          <ReactDatePicker  dateFormat="dd/MM/yyyy"
+                            onChange={
+                              (date) => {
+                                setDateOfBirth(date);
+                                setForm({ ...form,
+                                          dateOfBirth: date.toLocaleDateString() });
+                              }
                             }
-                          }
-                          selected={dateOfBirth} />
-        <label htmlFor="dateofbirth">Date of Birth<span className="required">*</span></label>
-      </div>
-      <div>
-        <ReactDatePicker  dateFormat="dd/MM/yyyy"
-                          onChange={
-                            (date) => {
-                              setStartDate(date)
-                              setForm({ ...form,
-                                        startDate: date.toLocaleDateString() })}
-                          }
-                          selected={startDate} />
-        <label htmlFor="startdate">Start Date<span className="required">*</span></label>
-      </div>
-      <fieldset>
-        <legend>Address</legend>
-        <div>
-          <input  type="text" id="street" minLength="3" required
-                  onChange={
-                    (e) => {
-                      setForm({ ...form,
-                                street: e.target.value  })
-                    }
-                  } />
-          <label htmlFor="street">Street<span className="required">*</span></label>
+                            selected={dateOfBirth} />
+          <label htmlFor="dateofbirth">Date of Birth<span className="required">*</span></label>
         </div>
         <div>
-          <input  type="text" id="city" minLength="3" required
-                  onChange={
-                    (e) => {
-                      setForm({ ...form,
-                                city: e.target.value  })
-                    }
-                  } />
-          <label htmlFor="city">City<span className="required">*</span></label>
+          <ReactDatePicker  dateFormat="dd/MM/yyyy"
+                            onChange={
+                              (date) => {
+                                setStartDate(date)
+                                setForm({ ...form,
+                                          startDate: date.toLocaleDateString() })}
+                            }
+                            selected={startDate} />
+          <label htmlFor="startdate">Start Date<span className="required">*</span></label>
         </div>
-        <div>
-          <select id="state" required
-                  onChange={
-                    (e) => {
-                      setForm({ ...form,
-                                state: e.target.value })
-                    }
-                  }>
-            <FormOptions options={constStates} />
-          </select>
-          <label htmlFor="state">State<span className="required">*</span></label>
-        </div>
-        <div>
-          <input  type="number" id="zipcode" required max="99999" min="1"
-                  onChange={
-                    (e) => {
-                      setForm({ ...form,
-                                zipCode: e.target.value })
+        <fieldset>
+          <legend>Address</legend>
+          <div>
+            <input  type="text" id="street" minLength="3" required
+                    onChange={
+                      (e) => {
+                        setForm({ ...form,
+                                  street: e.target.value  })
                       }
                     } />
-          <label htmlFor="zipcode">Zip Code<span className="required">*</span></label>
+            <label htmlFor="street">Street<span className="required">*</span></label>
+          </div>
+          <div>
+            <input  type="text" id="city" minLength="3" required
+                    onChange={
+                      (e) => {
+                        setForm({ ...form,
+                                  city: e.target.value  })
+                      }
+                    } />
+            <label htmlFor="city">City<span className="required">*</span></label>
+          </div>
+          <div>
+            <select id="state" required
+                    onChange={
+                      (e) => {
+                        setForm({ ...form,
+                                  state: e.target.value })
+                      }
+                    }>
+              <FormOptions options={constStates} />
+            </select>
+            <label htmlFor="state">State<span className="required">*</span></label>
+          </div>
+          <div>
+            <input  type="number" id="zipcode" required max="99999" min="1"
+                    onChange={
+                      (e) => {
+                        setForm({ ...form,
+                                  zipCode: e.target.value })
+                        }
+                      } />
+            <label htmlFor="zipcode">Zip Code<span className="required">*</span></label>
+          </div>
+        </fieldset>
+        <div>
+          <select id="department" required
+                  onChange={
+                    (e) => {
+                      setForm({ ...form,
+                                department: e.target.value  })
+                    }
+                  }>
+              <FormOptions options={constDepartments} />
+          </select>
+          <label htmlFor="department">Department<span className="required">*</span></label>
         </div>
-      </fieldset>
-      <div>
-        <select id="department" required
-                onChange={
-                  (e) => {
-                    setForm({ ...form,
-                              department: e.target.value  })
-                  }
-                }>
-            <FormOptions options={constDepartments} />
-        </select>
-        <label htmlFor="department">Department<span className="required">*</span></label>
-      </div>
-      <small className="required">* Required fields</small>
-      <input  type="submit" value="Save" />
-    </form>
+        <small className="required">* Required fields</small>
+        <input  type="submit" value="Save" />
+      </form>
+    </>
   );
 }
 
