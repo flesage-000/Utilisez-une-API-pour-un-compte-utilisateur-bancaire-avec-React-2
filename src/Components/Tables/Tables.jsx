@@ -7,6 +7,7 @@ import employeesOriginalList from "../Stores/GetFromLocal.jsx";
 
 function Tables(data) {
   data = data.data;
+  let showEntriesLength = 0;
   const [showEntries, setShowEntries] = useState(10);
   const [indexStart, setIndexStart] = useState(0);
   const [indexEnd, setIndexEnd] = useState(showEntries);
@@ -112,13 +113,11 @@ function Tables(data) {
     setIndexEnd(showEntries * value);
   }
 
-  const Paginator = () => { console.log("Paginator", Math.ceil(employees.length / showEntries)); // dans composant à part
+  const Paginator = () => { // dans composant à part
     const employeesLength = employees.length;
     const pageTotal = Math.ceil(employeesLength / showEntries);
     const pageArray = [];
-    for(let i = 1; i <= pageTotal; i++) { //console.log("i", i);
-      pageArray.push(i)
-    }
+    for(let i = 1; i <= pageTotal; i++) { pageArray.push(i);  }
     return (
       <>
         {indexStart !== 0 ? <button className="previous" onClick={handlePrevious} type="button">Previous</button> : ''}
@@ -188,6 +187,7 @@ function Tables(data) {
             { employees ? employees
                 .slice(indexStart, indexEnd)
                 .map(tr => {
+                  showEntriesLength = showEntriesLength + 1;
                   return (<tr key={Math.random()}>
                     <td>{tr.firstName}</td>
                     <td>{tr.lastName}</td>
@@ -206,7 +206,7 @@ function Tables(data) {
         <tfoot>
           <tr>
             <td colSpan="5">
-              Showing 1 to 1 entries
+              Showing {showEntriesLength} to {employees.length} entries
             </td>
             <td colSpan="4">
               <Paginator />
