@@ -29,15 +29,11 @@ function FormCreateEmployee() {
   });
   const data = {
     style: {
-      modalBackgroundColor: null,
-      modalBorder: null,
       modalPosition: {
-        type: "fixedWidthHeight",
-      },
-      overlayBackground: null,
-      textAlign: "left"
+        type: "unknownWidthHeight",
+      }
     },
-    text: "Hey Salut !!"
+    text: "Nouvel employé ajouté !"
   }
 
   function handleSubmit(event) {
