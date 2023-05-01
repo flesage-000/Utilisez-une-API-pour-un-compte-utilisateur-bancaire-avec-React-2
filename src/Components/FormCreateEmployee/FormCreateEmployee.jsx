@@ -29,7 +29,7 @@ function FormCreateEmployee() {
     zipCode: null,
     department: null,
   });
-  const data = {
+  const modaleOptions = {
     style: {
       modalPosition: {
         type: "unknownWidthHeight",
@@ -38,6 +38,10 @@ function FormCreateEmployee() {
     text: "Nouvel employé ajouté !"
   }
 
+  /**
+   * To push new data to context then open the modal.
+   * @param {object} event
+   */
   function handleSubmit(event) {
     event.preventDefault();
     context.push(form);
@@ -46,7 +50,9 @@ function FormCreateEmployee() {
 
   return(
     <>
-      <Flmodale data={data} isOpen={isOpen} setMdlOpen={setIsOpen}/>
+      <Flmodale data={modaleOptions}
+                isOpen={isOpen}
+                setMdlOpen={setIsOpen}/>
       <form onSubmit={handleSubmit}>
         <div>
           <input  type="text" id="firstname" minLength="3" required
@@ -157,7 +163,8 @@ function FormCreateEmployee() {
           <label htmlFor="department">Department<span className="required">*</span></label>
         </div>
         <small className="required">* Required fields</small>
-        <input  type="submit" value="Save" />
+        <input  type="submit"
+                value="Save" />
       </form>
     </>
   );
