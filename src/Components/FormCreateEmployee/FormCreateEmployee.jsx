@@ -16,8 +16,8 @@ function FormCreateEmployee() {
   const [selectedDepartmentsOptions, setSelectedDepartmentsOptions] = useState(null);
   const [selectedStatesOptions, setSelectedStatesOptions] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
-  const [dateOfBirth, setDateOfBirth] = useState(new Date());
-  const [startDate, setStartDate] = useState(new Date());
+  const [dateOfBirth, setDateOfBirth] = useState();
+  const [startDate, setStartDate] = useState();
   const [form, setForm] = useState({
     firstName: null,
     lastName: null,
@@ -78,6 +78,8 @@ function FormCreateEmployee() {
                                           dateOfBirth: date.toLocaleDateString() });
                               }
                             }
+                            placeholderText="Select a date"
+                            required
                             selected={dateOfBirth} />
           <label htmlFor="dateofbirth">Date of Birth<span className="required">*</span></label>
         </div>
@@ -89,6 +91,8 @@ function FormCreateEmployee() {
                                 setForm({ ...form,
                                           startDate: date.toLocaleDateString() })}
                             }
+                            placeholderText="Select a date"
+                            required
                             selected={startDate} />
           <label htmlFor="startdate">Start Date<span className="required">*</span></label>
         </div>
