@@ -115,7 +115,8 @@ function FormCreateEmployee() {
             <label htmlFor="city">City<span className="required">*</span></label>
           </div>
           <div>
-            <Select defaultValue={selectedStatesOptions}
+            <Select className="react-select"
+                    defaultValue={selectedStatesOptions}
                     onChange={
                       (newValue) => {
                         setSelectedStatesOptions(newValue.label);
@@ -124,7 +125,7 @@ function FormCreateEmployee() {
                       }
                     }
                     options={constStates}
-                    required></Select>
+                    required={true}></Select>
             <label htmlFor="state">State<span className="required">*</span></label>
           </div>
           <div>
@@ -139,7 +140,8 @@ function FormCreateEmployee() {
           </div>
         </fieldset>
         <div>
-          <Select defaultValue={selectedDepartmentsOptions}
+          <Select className="react-select"
+                  defaultValue={selectedDepartmentsOptions}
                   onChange={
                     (newValue) => {
                       setSelectedDepartmentsOptions(newValue.value);
@@ -148,7 +150,7 @@ function FormCreateEmployee() {
                     }
                   }
                   options={constDepartments}
-                  required></Select>
+                  required={true}></Select>
           <label htmlFor="department">Department<span className="required">*</span></label>
         </div>
         <small className="required">* Required fields</small>

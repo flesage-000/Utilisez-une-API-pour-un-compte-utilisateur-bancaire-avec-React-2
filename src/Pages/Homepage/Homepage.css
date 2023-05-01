@@ -29,9 +29,10 @@
 .createEmployee span.required {
   display: none;
 }
-.createEmployee .required {
-  color: red;
-}
+/* .createEmployee .required,
+.createEmployee input:invalid {
+  border-color: salmon;
+} */
 .createEmployee [required] + label .required {
   display: inline-block;
 }

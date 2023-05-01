@@ -8,3 +8,8 @@ form:invalid [type="submit"] {
   pointer-events: none;
   opacity: .5;
 }
+
+/* Select */
+.react-select > div {
+  border: solid 1px #000;
+}

@@ -23,8 +23,6 @@ input {
   border-radius: 5px;
   font-family: Montserrat;
 
+  min-height: 25px;
   padding: 3px;
-}
-input:invalid {
-  border-color: salmon;
 }
