@@ -3,16 +3,18 @@ import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Flmodale } from "fl-modale";
 import 'fl-modale/dist/index.css'
+import Select from "react-select";
 
 import "./FormCreateEmployee.css";
 
 import constDepartments from "../../constants/departements.jsx"
 import constStates from "../../constants/states.jsx";
 
-import FormOptions from "../FormOptions/FormOptions.jsx";
 import AddToLocal from "../Stores/AddToLocal.jsx";
 
 function FormCreateEmployee() {
+  const [selectedDepartmentsOptions, setSelectedDepartmentsOptions] = useState(null);
+  const [selectedStatesOptions, setSelectedStatesOptions] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const [dateOfBirth, setDateOfBirth] = useState(new Date());
   const [startDate, setStartDate] = useState(new Date());
@@ -113,15 +115,16 @@ function FormCreateEmployee() {
             <label htmlFor="city">City<span className="required">*</span></label>
           </div>
           <div>
-            <select id="state" required
+            <Select defaultValue={selectedStatesOptions}
                     onChange={
-                      (e) => {
+                      (newValue) => {
+                        setSelectedStatesOptions(newValue.label);
                         setForm({ ...form,
-                                  state: e.target.value })
+                                  state: newValue.label });
                       }
-                    }>
-              <FormOptions options={constStates} />
-            </select>
+                    }
+                    options={constStates}
+                    required></Select>
             <label htmlFor="state">State<span className="required">*</span></label>
           </div>
           <div>
@@ -136,15 +139,16 @@ function FormCreateEmployee() {
           </div>
         </fieldset>
         <div>
-          <select id="department" required
+          <Select defaultValue={selectedDepartmentsOptions}
                   onChange={
-                    (e) => {
+                    (newValue) => {
+                      setSelectedDepartmentsOptions(newValue.value);
                       setForm({ ...form,
-                                department: e.target.value  })
+                                department: newValue.value })
                     }
-                  }>
-              <FormOptions options={constDepartments} />
-          </select>
+                  }
+                  options={constDepartments}
+                  required></Select>
           <label htmlFor="department">Department<span className="required">*</span></label>
         </div>
         <small className="required">* Required fields</small>
