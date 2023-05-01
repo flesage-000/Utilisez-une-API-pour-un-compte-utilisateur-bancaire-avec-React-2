@@ -13,7 +13,7 @@ import FormOptions from "../FormOptions/FormOptions.jsx";
 import AddToLocal from "../Stores/AddToLocal.jsx";
 
 function FormCreateEmployee() {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [dateOfBirth, setDateOfBirth] = useState(new Date());
   const [startDate, setStartDate] = useState(new Date());
   const [form, setForm] = useState({
