@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 
 import './App.css';
+import img_wealth_health from './wealth_health.jpg';
 
 import Homepage from "./Pages/Homepage/Homepage.jsx";
 import EmployeeList from "./Pages/EmployeeList/EmployeeList.jsx";
@@ -14,6 +15,8 @@ import Errorpage from "./Pages/Errorpage/Errorpage.jsx";
 function App() {
   return (
     <div className="App">
+      <img  alt="Logo Wealth Health"
+            src={img_wealth_health} />
       <BrowserRouter>
         <Routes>
           <Route  path="/"

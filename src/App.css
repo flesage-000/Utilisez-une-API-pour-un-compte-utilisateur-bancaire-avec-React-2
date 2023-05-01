@@ -1,1 +1,8 @@
-.App {}
+.App  {
+  padding: 0 20px;
+}
+img {
+  margin: 0 auto;
+  display: block;
+  width: 100px;
+}
