@@ -1,9 +1,9 @@
 // import React from "react";
 import { useState } from "react";
-
 import "./Tables.css";
-
 import employeesOriginalList from "../Stores/GetFromLocal.jsx";
+import { useContext } from "react";
+import { Context } from "../../Utils/Context/Context";
 
 function Tables(data) {
   data = data.data;
@@ -11,7 +11,7 @@ function Tables(data) {
   const [showEntries, setShowEntries] = useState(10);
   const [indexStart, setIndexStart] = useState(0);
   const [indexEnd, setIndexEnd] = useState(showEntries);
-  const [employees, setEmployees] = useState(employeesOriginalList);
+  const [employees, setEmployees] = useState(useContext(Context));
   const [currentSort, setCurrentSort] = useState('');
   const dataHeader = data.header;
   const [currentPage, setCurrentPage] = useState(0);
@@ -91,7 +91,7 @@ function Tables(data) {
             ) { newObject.push(data); }
       });
       setEmployees(newObject);
-    } else setEmployees(employeesOriginalList);
+    } else setEmployees(employees);
   }
 
   function handleNext() {
@@ -124,7 +124,7 @@ function Tables(data) {
         {pageArray.map((number, index) => (
           <button disabled={currentPage === index ? true : false} value={number} key={index} onClick={handlePage} type="button">{number}</button>
         ))}
-        {indexEnd < employeesOriginalList.length ? <button className="next" onClick={handleNext} type="button">Next</button> : ''}
+        {indexEnd < employees.length ? <button className="next" onClick={handleNext} type="button">Next</button> : ''}
       </>
     );
   }

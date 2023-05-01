@@ -1,18 +1,21 @@
-import React, {useState} from "react";
+import React, { useContext, useState } from "react";
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Flmodale } from "fl-modale";
 import 'fl-modale/dist/index.css'
 import Select from "react-select";
+import { Context } from "../../Utils/Context/Context";
 
 import "./FormCreateEmployee.css";
 
 import constDepartments from "../../constants/departements.jsx"
 import constStates from "../../constants/states.jsx";
 
-import AddToLocal from "../Stores/AddToLocal.jsx";
+// import AddToLocal from "../Stores/AddToLocal.jsx";
+// import AddToContext from "../../Utils/Context/AddToContext";
 
 function FormCreateEmployee() {
+  const context = useContext(Context);
   const [selectedDepartmentsOptions, setSelectedDepartmentsOptions] = useState(null);
   const [selectedStatesOptions, setSelectedStatesOptions] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
@@ -41,7 +44,10 @@ function FormCreateEmployee() {
   function handleSubmit(event) {
     event.preventDefault();
     console.log("form", form);
-    AddToLocal(form);
+    console.log("context BEFORE PUSH", context);
+    context.push(form);
+    console.log("context AFTER PUSH", context);
+    // AddToLocal(form);
     setIsOpen(true);
   }
 
