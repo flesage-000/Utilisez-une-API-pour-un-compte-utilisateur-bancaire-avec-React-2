@@ -11,8 +11,6 @@ import "./FormCreateEmployee.css";
 import constDepartments from "../../constants/departements.jsx"
 import constStates from "../../constants/states.jsx";
 
-// import AddToContext from "../../Utils/Context/AddToContext";
-
 function FormCreateEmployee() {
   const context = useContext(Context);
   const [selectedDepartmentsOptions, setSelectedDepartmentsOptions] = useState(null);
