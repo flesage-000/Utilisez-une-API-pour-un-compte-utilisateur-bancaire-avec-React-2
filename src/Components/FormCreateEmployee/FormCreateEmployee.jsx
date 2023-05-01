@@ -11,7 +11,6 @@ import "./FormCreateEmployee.css";
 import constDepartments from "../../constants/departements.jsx"
 import constStates from "../../constants/states.jsx";
 
-// import AddToLocal from "../Stores/AddToLocal.jsx";
 // import AddToContext from "../../Utils/Context/AddToContext";
 
 function FormCreateEmployee() {
@@ -43,11 +42,7 @@ function FormCreateEmployee() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log("form", form);
-    console.log("context BEFORE PUSH", context);
     context.push(form);
-    console.log("context AFTER PUSH", context);
-    // AddToLocal(form);
     setIsOpen(true);
   }
 
