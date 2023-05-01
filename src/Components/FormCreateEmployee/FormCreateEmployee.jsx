@@ -8,8 +8,8 @@ import { Context } from "../../Utils/Context/Context";
 
 import "./FormCreateEmployee.css";
 
-import constDepartments from "../../constants/departements.jsx"
-import constStates from "../../constants/states.jsx";
+import constDepartments from "../../Utils/Constants/departements.jsx"
+import constStates from "../../Utils/Constants/states.jsx";
 
 function FormCreateEmployee() {
   const context = useContext(Context);
