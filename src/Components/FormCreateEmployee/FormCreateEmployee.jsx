@@ -132,7 +132,7 @@ function FormCreateEmployee() {
                       (newValue) => {
                         setSelectedStatesOptions(newValue.label);
                         setForm({ ...form,
-                                  state: newValue.label });
+                                  state: newValue.value });
                       }
                     }
                     options={constStates}
