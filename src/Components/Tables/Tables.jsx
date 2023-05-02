@@ -8,23 +8,14 @@ import { EmployeesShowEntries } from "../../Utils/Constants/EmployeesShowEntries
 function Tables(data) {
   data = data.data;
   let showEntriesLength = 0;
-  const [showEntries, setShowEntries] = useState(10);
+  const [showEntries, setShowEntries] = useState(EmployeesShowEntries[0].value);
   const [indexStart, setIndexStart] = useState(0);
   const [indexEnd, setIndexEnd] = useState(showEntries);
   const [employees, setEmployees] = useState(useContext(Context));
   const [currentSort, setCurrentSort] = useState('');
   const dataHeader = data.header;
   const [currentPage, setCurrentPage] = useState(0);
-
-  /**
-   * Manage the nummber of entries to show.
-   * @param {object} event
-   */
-  function handleEntries(event) {
-    const { value } = event.target;
-    setShowEntries(value);
-    setIndexEnd(value);
-  }
+console.log("showEntries", showEntries);
 
   /**
    * Convert a string to camelCase then add prefix and/or suffix
@@ -151,7 +142,7 @@ function Tables(data) {
         <div>
           <label htmlFor="entries">Show</label>
           <Select className="react-select"
-                  defaultValue={showEntries}
+                  defaultValue={EmployeesShowEntries[0]}
                   onChange={
                     (newValue) => {
                       setShowEntries(newValue.value);
