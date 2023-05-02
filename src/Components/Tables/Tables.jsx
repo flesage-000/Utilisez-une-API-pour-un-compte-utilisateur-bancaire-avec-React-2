@@ -1,7 +1,6 @@
 // import React from "react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./Tables.css";
-import { useContext } from "react";
 import { Context } from "../../Utils/Context/Context";
 
 function Tables(data) {
@@ -15,6 +14,10 @@ function Tables(data) {
   const dataHeader = data.header;
   const [currentPage, setCurrentPage] = useState(0);
 
+  /**
+   * Manage the nummber of entries to show.
+   * @param {object} event
+   */
   function handleEntries(event) {
     const { value } = event.target;
     setShowEntries(value);
@@ -41,12 +44,20 @@ function Tables(data) {
     return toReturn
   }
 
+  /**
+   *
+   * @param {object} event
+   */
   function handleSortable(event) {
     event.preventDefault();
     setCurrentSort(event.target.dataset.sortType);
     handleSort(event.target.dataset.sortType);
   }
 
+  /**
+   * Set the data to sort.
+   * @param {string} sortType
+   */
   function handleSort(sortType) {
     let dataToSort = [...employees];
     dataToSort.sort((a, b) => {
@@ -72,6 +83,10 @@ function Tables(data) {
     setEmployees(dataToSort);
   }
 
+  /**
+   * Manage the search data.
+   * @param {object} event
+   */
   function handleSearch(event) {
     const value = event.target.value.trim().toLowerCase();
     let dataToSearch = [...employees];
@@ -190,9 +205,9 @@ function Tables(data) {
                   return (<tr key={Math.random()}>
                     <td>{tr.firstName}</td>
                     <td>{tr.lastName}</td>
-                    <td>{tr.startDate}</td>
+                    <td>{new Date(tr.startDate).toLocaleDateString()}</td>
                     <td>{tr.department}</td>
-                    <td>{tr.dateOfBirth}</td>
+                    <td>{new Date(tr.dateOfBirth).toLocaleDateString()}</td>
                     <td>{tr.street}</td>
                     <td>{tr.city}</td>
                     <td>{tr.state}</td>

@@ -79,8 +79,9 @@ function FormCreateEmployee() {
                             onChange={
                               (date) => {
                                 setDateOfBirth(date);
+                                console.log("dateOfBirth", date);
                                 setForm({ ...form,
-                                          dateOfBirth: date.toLocaleDateString() });
+                                          dateOfBirth: date });
                               }
                             }
                             placeholderText="Select a date"
@@ -92,9 +93,10 @@ function FormCreateEmployee() {
           <ReactDatePicker  dateFormat="dd/MM/yyyy"
                             onChange={
                               (date) => {
-                                setStartDate(date)
+                                setStartDate(date);
+                                console.log("startDate", date);
                                 setForm({ ...form,
-                                          startDate: date.toLocaleDateString() })}
+                                          startDate: date })}
                             }
                             placeholderText="Select a date"
                             required
