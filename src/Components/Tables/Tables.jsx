@@ -67,8 +67,8 @@ function Tables(data) {
       else if (sortType === "lastNameDESC") return b.lastName.localeCompare(a.lastName)
       else if (sortType === "startDateASC") return new Date(a.startDate) - new Date(b.startDate)
       else if (sortType === "startDateDESC") return new Date(b.startDate) - new Date(a.startDate)
-      else if (sortType === "departementASC") return b.departement.localeCompare(a.departement)
-      else if (sortType === "departementDESC")return a.departement.localeCompare(b.departement)
+      else if (sortType === "departmentASC") return b.department.localeCompare(a.department)
+      else if (sortType === "departmentDESC")return a.department.localeCompare(b.department)
       else if (sortType === "dateOfBirthASC") return new Date(a.dateOfBirth) - new Date(b.dateOfBirth)
       else if (sortType === "dateOfBirthDESC") return new Date(b.dateOfBirth) - new Date(a.dateOfBirth)
       else if (sortType === "streetASC") return a.street.localeCompare(b.street)
@@ -77,8 +77,8 @@ function Tables(data) {
       else if (sortType === "cityDESC") return b.city.localeCompare(a.city)
       else if (sortType === "stateASC") return a.state.localeCompare(b.state)
       else if (sortType === "stateDESC") return b.state.localeCompare(a.state)
-      else if (sortType === "zipCodeASC") return a - b
-      else if (sortType === "zipCodeDESC") return b - a
+      else if (sortType === "zipCodeASC") return a.zipCode - b.zipCode
+      else if (sortType === "zipCodeDESC") return b.zipCode - a.zipCode
     })
     setEmployees(dataToSort);
   }
