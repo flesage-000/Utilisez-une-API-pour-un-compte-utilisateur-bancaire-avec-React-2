@@ -2,6 +2,8 @@
 import { useContext, useState } from "react";
 import "./Tables.css";
 import { Context } from "../../Utils/Context/Context";
+import Select from "react-select";
+import { EmployeesShowEntries } from "../../Utils/Constants/EmployeesShowEntries";
 
 function Tables(data) {
   data = data.data;
@@ -148,14 +150,15 @@ function Tables(data) {
       <form>
         <div>
           <label htmlFor="entries">Show</label>
-          <select defaultValue={showEntries}
-                  id="entries"
-                  onChange={handleEntries}>
-            <option value="10">10</option>
-            <option value="25">25</option>
-            <option value="50">50</option>
-            <option value="100">100</option>
-          </select>
+          <Select className="react-select"
+                  defaultValue={showEntries}
+                  onChange={
+                    (newValue) => {
+                      setShowEntries(newValue.value);
+                      setIndexEnd(newValue.value);
+                    }
+                  }
+                  options={EmployeesShowEntries}></Select>
           <label htmlFor="entries">entries</label>
         </div>
         <div>
