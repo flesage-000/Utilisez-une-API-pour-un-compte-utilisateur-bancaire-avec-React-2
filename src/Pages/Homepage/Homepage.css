@@ -10,6 +10,7 @@
 .createEmployee form > div,
 .createEmployee form > div .react-datepicker__input-container,
 .createEmployee form > fieldset > div  {
+  align-items: stretch;
   display: flex;
   flex-direction: column-reverse;
 }
