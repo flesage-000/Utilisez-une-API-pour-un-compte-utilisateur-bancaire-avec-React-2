@@ -15,7 +15,6 @@ function Tables(data) {
   const [currentSort, setCurrentSort] = useState('');
   const dataHeader = data.header;
   const [currentPage, setCurrentPage] = useState(0);
-console.log("showEntries", showEntries);
 
   /**
    * Convert a string to camelCase then add prefix and/or suffix
