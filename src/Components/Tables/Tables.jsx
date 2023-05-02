@@ -4,6 +4,7 @@ import "./Tables.css";
 import { Context } from "../../Utils/Context/Context";
 import Select from "react-select";
 import { EmployeesShowEntries } from "../../Utils/Constants/EmployeesShowEntries";
+import constStates from "../../Utils/Constants/states";
 
 function Tables(data) {
   data = data.data;
@@ -203,7 +204,8 @@ function Tables(data) {
                     <td>{new Date(tr.dateOfBirth).toLocaleDateString()}</td>
                     <td>{tr.street}</td>
                     <td>{tr.city}</td>
-                    <td>{tr.state}</td>
+                    <td><abbr title={ constStates.find(state => state.value === tr.state
+                    ).label }>{tr.state}</abbr></td>
                     <td>{tr.zipCode}</td>
                   </tr>)
                 })
